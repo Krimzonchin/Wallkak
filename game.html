@@ -13,6 +13,7 @@
 	var mouseX;
 	var mouseY;
 	const paddleHeight = 100;
+	const paddleHeight2 = 100;
 	function calculateMousePos(evt) {
 		var rect = canvas.getBoundingClientRect();
 		var root = document.documentElement;
@@ -44,7 +45,16 @@
 		ballX = canvas.width/2;
 		ballY = Math.floor(Math.random() * 600 + 1);
 	}
+	function computerMovement() {
+	if(paddle2Y < ballY) {
+		paddle2Y = paddle2Y + 6;
+	} else {
+		paddle2Y = paddle2Y - 6;
+}
+}
 	function moveEverything() {
+		computerMovement();
+		
 		ballX = ballX + ballSpeedX;
 		ballY = ballY + ballSpeedY;
 		// console.log(ballX);
@@ -77,7 +87,7 @@
 		//drawing left padle
 	  colorRect(20,paddle1Y,10,paddleHeight,'white');
 		//Next line draws right paddle
-	colorRect(770,paddle2Y,10,paddleHeight,'white');
+	colorRect(770,paddle2Y,10,paddleHeight2,'white');
 		//Next line draws ball
 		colorCircle(ballX,ballY, 10,'white');
 	}
