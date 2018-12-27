@@ -59,7 +59,8 @@
 	}
 	//when ball goes to left wall   it turns around
 	if (ballX == canvas.width) {
-		ballSpeedX = -ballSpeedX;
+		//ballSpeedX = -ballSpeedX;
+		ballReset();
 	}
 	//downwall
 	if (ballY < 0) {
