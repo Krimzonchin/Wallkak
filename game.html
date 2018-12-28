@@ -46,7 +46,8 @@
 		ballY = Math.floor(Math.random() * 600 + 1);
 	}
 	function computerMovement() {
-	if(paddle2Y < ballY) {
+		var paddle2YCenter = paddle2Y + (paddleHeight2/2)
+	if(paddle2YCenter < ballY) {
 		paddle2Y = paddle2Y + 6;
 	} else {
 		paddle2Y = paddle2Y - 6;
@@ -54,7 +55,7 @@
 }
 	function moveEverything() {
 		computerMovement();
-		
+
 		ballX = ballX + ballSpeedX;
 		ballY = ballY + ballSpeedY;
 		// console.log(ballX);
