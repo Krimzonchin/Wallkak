@@ -12,8 +12,11 @@
 	var paddle2Y = 250;
 	var mouseX;
 	var mouseY;
+	var paddle2YCenter;
 	const paddleHeight = 100;
 	const paddleHeight2 = 100;
+
+
 	function calculateMousePos(evt) {
 		var rect = canvas.getBoundingClientRect();
 		var root = document.documentElement;
@@ -45,34 +48,33 @@
 		ballX = canvas.width/2;
 		ballY = Math.floor(Math.random() * 600 + 1);
 	}
+
 	function computerMovement() {
-		var paddle2YCenter = paddle2Y + (paddleHeight2/2)
-	if(paddle2YCenter < ballY) {
-		paddle2Y = paddle2Y + 6;
-	} else {
-		paddle2Y = paddle2Y - 6;
-}
-}
+		paddle2YCenter = paddle2Y + (paddleHeight2/2);
+		if(paddle2YCenter < ballY) {
+			paddle2Y = paddle2Y + 6;
+		} else {
+			paddle2Y = paddle2Y - 6;
+		}
+	}
+
 	function moveEverything() {
 		computerMovement();
-		var paddle2YCenter = paddleHeight2
 		ballX = ballX + ballSpeedX;
 		ballY = ballY + ballSpeedY;
-		// console.log(ballX);
 	//when the ball goes right against wall it turns around
 	if (ballX < 0) {
 		//ballSpeedX = -ballSpeedX;
 		ballReset();
 	}
 	if (ballX <= 33 && ballY <= mouseY + 50 && ballY >= mouseY - 50) {
-		//ballSpeedX = -ballSpeedX;
 		ballSpeedX = -ballSpeedX;
 	}
 	//when ball goes to left wall   it turns around
 	if(ballX > canvas.width) {
 			ballReset();
 		}
-	if (ballX >=(canvas.width - 30) && ballY >= paddle2YCenter && ballY >= paddle2YCenter) {
+	if (ballX >= canvas.width - 33 && ballY <= paddle2YCenter + 50 && ballY >= paddle2YCenter - 50) {
 		ballSpeedX = -ballSpeedX;
 	}
 	//downwall
@@ -84,6 +86,7 @@
 		ballSpeedY = -ballSpeedY;
 	}
 	}
+
 	function drawEverything() {
 		//canvas background
 		colorRect (0,0,canvas.width,canvas.height,'black');
@@ -94,12 +97,14 @@
 		//Next line draws ball
 		colorCircle(ballX,ballY, 10,'white');
 	}
+
 	function colorCircle(centreX, centreY, radius, drawColor) {
 	canvasContext.fillStyle = drawColor;
 		canvasContext.beginPath();
 		canvasContext.arc(centreX,centreY,radius,0,Math.PI*2, true);
 		canvasContext.fill();
 	}
+
 	function colorRect (leftX,topY,width,height, drawColor) {
 		canvasContext.fillStyle = drawColor;
 		canvasContext.fillRect(leftX,topY, width,height);
