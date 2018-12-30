@@ -13,8 +13,13 @@
 	var mouseX;
 	var mouseY;
 	var paddle2YCenter;
+	var computerSpeed = randomSpeed();
 	const paddleHeight = 100;
 	const paddleHeight2 = 100;
+
+	function randomSpeed(){
+		return Math.floor(Math.random() * 7) + 6;
+	}
 
 
 	function calculateMousePos(evt) {
@@ -47,15 +52,18 @@
 		ballSpeedY = Math.floor(Math.random() * 26);
 		ballX = canvas.width/2;
 		ballY = Math.floor(Math.random() * 600 + 1);
+		computerSpeed = randomSpeed();
 	}
 
 	function computerMovement() {
 		paddle2YCenter = paddle2Y + (paddleHeight2/2);
-		if(paddle2YCenter < ballY) {
-			paddle2Y = paddle2Y + 6;
-		} else {
-			paddle2Y = paddle2Y - 6;
+		if(ballY >= paddle2YCenter + 30) {
+			paddle2Y = paddle2Y + computerSpeed;
+		} else if (ballY <= paddle2YCenter - 30) {
+				paddle2Y = paddle2Y - computerSpeed;
 		}
+
+
 	}
 
 	function moveEverything() {
@@ -76,6 +84,7 @@
 		}
 	if (ballX >= canvas.width - 33 && ballY <= paddle2YCenter + 50 && ballY >= paddle2YCenter - 50) {
 		ballSpeedX = -ballSpeedX;
+		computerSpeed = randomSpeed();
 	}
 	//downwall
 	if (ballY < 0) {
