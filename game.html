@@ -4,16 +4,26 @@
 <script>
 	var canvas;
 	var canvasContext;
+
 	var ballX = 400;
 	var ballY = 300;
+
 	var ballSpeedX = -10;
 	var ballSpeedY = 0;
+
 	var paddle1Y = 250;
 	var paddle2Y = 250;
+
 	var mouseX;
 	var mouseY;
+
 	var paddle2YCenter;
+
 	var computerSpeed = randomSpeed();
+
+	var player1Score = 0
+	var player2Score = 0
+
 	const paddleHeight = 100;
 	const paddleHeight2 = 100;
 
@@ -105,6 +115,9 @@
 	colorRect(770,paddle2Y,10,paddleHeight2,'Red');
 		//Next line draws ball
 		colorCircle(ballX,ballY, 10,'Blue');
+
+		canvasContext.fillText(player1Score, 100, 100);
+		canvasContext.fillText(player2Score, canvas.width -100,100);
 	}
 
 	function colorCircle(centreX, centreY, radius, drawColor) {
