@@ -88,7 +88,7 @@
 	if (ballX <= 33 && ballY <= mouseY + 50 && ballY >= mouseY - 50) {
 		ballSpeedX = -ballSpeedX;
 	}
-	//when ball goes to left wall   it turns around
+	//when ball goes to right wall   it turns around
 	if(ballX > canvas.width) {
 			ballReset();
 		}
@@ -104,6 +104,10 @@
 	if (ballY > canvas.height) {
 		ballSpeedY = -ballSpeedY;
 	}
+
+	if (ballX > canvas.width) {
+		player1Score++;
+	}
 	}
 
 	function drawEverything() {
@@ -118,6 +122,7 @@
 
 		canvasContext.fillText(player1Score, 100, 100);
 		canvasContext.fillText(player2Score, canvas.width -100,100);
+
 	}
 
 	function colorCircle(centreX, centreY, radius, drawColor) {
